@@ -1,4 +1,4 @@
-// Arrays for products and their prices
+// products and their prices
 const products = ["apple", "banana", "orange"];
 const prices = [6, 9, 7];
 
@@ -10,38 +10,42 @@ function displayProducts() {
     });
 }
 
-// Function to get selected products from the user
+// selected products from the user
 function getUserSelections() {
     const selections = [];
     let productIndex;
     while (true) {
         productIndex = parseInt(prompt("Enter the product number to select (or type 0 to finish):")) - 1;
-        if (productIndex === -1) break;
+        if (productIndex === -1) 
+            break;
         if (productIndex >= 0 && productIndex < products.length) {
             selections.push(productIndex);
-        } else {
+        } 
+        else {
             console.log("Invalid product number. Please try again.");
         }
     }
     return selections;
 }
 
-// Function to calculate the total cost of selected products
+// calculate the total cost of selected products
 function calculateTotalCost(selections) {
     let totalCost = 0;
     selections.forEach(index => {
         totalCost += prices[index];
     });
+    
     return totalCost;
 }
 
-// Function to handle the purchase process
+// handle the purchase process
 function handlePurchase(userBudget) {
     displayProducts();
     const userSelections = getUserSelections();
     if (userSelections.length === 0) {
         console.log("No products selected.");
-        return;
+    
+    return;
     }
 
     const totalCost = calculateTotalCost(userSelections);
@@ -50,7 +54,8 @@ function handlePurchase(userBudget) {
 
     if (totalCost > userBudget) {
         console.log("Insufficient budget. Please select fewer products.");
-    } else {
+    } 
+    else {
         const change = userBudget - totalCost;
         console.log(`Purchase successful! Your change is: R${change}`);
     }
